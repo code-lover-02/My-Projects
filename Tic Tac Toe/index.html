@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Your Chilhood Game is here!</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <nav class="">
+        <ul>
+            <li>Tic Tac Toe - Your Chilhood Game is here!</li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        Tic-tac-toe, noughts and crosses, or Xs and Os is a paper-and-pencil game for two players who take turns marking 
+        the spaces in a three-by-three grid with X or O. 
+        The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
+    </div>
+    
+    <div class="gameContainer">
+        <div class="boxItem">
+            <div id="1" onclick="print_text(this)" class="box bl-0 bt-0"><span class="boxText"></span></div>
+            <div id="2" onclick="print_text(this)" class="box bt-0"><span class="boxText"></span></div>
+            <div id="3" onclick="print_text(this)" class="box bt-0 br-0"><span class="boxText"></span></div>
+            <div id="4" onclick="print_text(this)" class="box bl-0"><span class="boxText"></span></div>
+            <div id="5" onclick="print_text(this)" class="box"><span class="boxText"></span></div>
+            <div id="6" onclick="print_text(this)" class="box br-0"><span class="boxText"></span></div>
+            <div id="7" onclick="print_text(this)" class="box bl-0 bb-0"><span class="boxText"></span></div>
+            <div id="8" onclick="print_text(this)" class="box bb-0"><span class="boxText"></span></div>
+            <div id="9" onclick="print_text(this)" class="box bb-0 br-0"><span class="boxText"></span></div>
+        </div>
+        <div class="gameInfo" id="div1">
+            <h1>Welcome to Tic Tac MyTicTacToe</h1>
+            <span id="ox_t" class="ox">Turn for X!</span>&nbsp;
+            <button id="resetbtn" onclick="reset(this)" type="reset">Reset</button><br>
+            <img id="img" src="Media/excited.gif">
+        </div>
+    </div>
+    <script async src="script.js"></script>
+</body>
+</html>
