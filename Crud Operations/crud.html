@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Project 2 - Courses</h1>
+    
+    <header><nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav></header>
+      <main>
+        <div class="container mt-5 col-6" >
+            <div class="input-group mb-3">
+            <input id="input1" type="text" class="form-control" placeholder="Chapter Name" aria-label="Recipient's username" aria-describedby="button-addon2" >
+            <button id="btn1" class="btn btn-outline-dark" type="button" id="button-addon2">Add</button>
+            <!-- <button id="btn_r" class="btn btn-outline-dark" type="button" id="button-addon2">Remove</button> -->
+            </div>
+            <ul class="list-group" id="ul1">
+              <li id="li1" class="list-group-item d-flex justify-content-between">
+                <h3 id="h3" class="flex-grow-1">Chapter 1</h3>
+                <button class="btn btn-outline-warning mx-3" id="editbtn" onclick="Ch_name(this)">Edit</button>
+                <button class="btn btn-outline-danger" onclick="remove_li(this)" >Remove</button>
+              </li>
+            </ul>
+        </div>
+      </main>
+      <script>
+        // document.addEventListener("DOMContentLoaded", function(){
+            let btn = document.getElementById('btn1')
+            btn.addEventListener('click', addChapter)            
+            let ul_tag = document.getElementById('ul1')
+            let input = document.getElementById('input1')
+            // ul1.append(input)
+            // console.log('Create Read Update Delete')
+            function addChapter(event){
+              // let currentBtn = event.currentTarget;
+              if(ul_tag.children[0].className == "emptyMsg"){
+                ul_tag.children[0].remove()
+              }
+              let string = input.value
+              // let currentInput = btn.previousElementSibling
+              // console.log(currentInput.value)
+              let li_tag = document.createElement('li')
+              // li_tag.textContent = string
+              li_tag.innerHTML = `<h3 class="flex-grow-1">${string}</h3>
+              <button class="btn btn-outline-warning mx-3" onclick="Ch_name(this)">Edit</button>
+              <button class="btn btn-outline-danger" onclick="remove_li(this)">Remove</button>`
+              // li_tag.classList.add("list-group-item")
+              li_tag.className = 'list-group-item d-flex justify-content-between'
+              ul1.append(li_tag)
+              console.log(event)
+            }
+            
+            function remove_li(currElement){
+              currElement.parentElement.remove()
+              console.log("done")
+            
+              let ul_tag = document.getElementById('ul1')
+              // function alert_(){
+                //   if (ul_tag.childElementCount == 0){
+                  //     alert("Nothing is here!")
+                  //   }
+                  // }
+                  if(ul_tag.children.length == 0){
+                  let h2_tag = document.createElement('h3')
+                  h2_tag.classList.add('emptyMsg')
+                  h2_tag.textContent = "Nothing is here! Add a chapter"
+                  ul_tag.appendChild(h2_tag)
+                  }
+              }
+
+              function Ch_name(currElement){
+                // currElement.parentElement.remove()
+                // let edit_btn = document.getElementById('editbtn')
+                if(currElement.textContent == "Done"){
+                  currElement.textContent = "Edit" 
+                  ch_n = currElement.previousElementSibling.value               
+                  let h3_t = document.createElement('h3')
+                  h3_t.className = "flex-grow-1"
+                  h3_t.textContent = ch_n
+                  // new_tag.remove()
+                  // currElement.parentElement.prepend(h3_t)
+                  currElement.previousElementSibling.replaceWith(h3_t)
+                  // currElement.previousElementSibling.textContent = ch_n
+                  // new_tag.replaceWith(h3_t)
+                }
+                else{
+                currElement.textContent = "Done"
+                // console.log(edit_btn.textContent)
+                // currElement.previousElementSibling.textContent
+                // console.log(edit_btn)
+                this.new_tag = document.createElement('input')
+                this.ch_n = currElement.previousElementSibling.textContent
+                new_tag.className = 'form-control'
+                new_tag.placeholder = 'Chapter Name'
+                new_tag.type = "text"
+                // ch_n = new_tag.value
+                // new_tag.value = ch_n
+                currElement.previousElementSibling.replaceWith(new_tag)
+                }
+                // ul_tag.prepend(new_tag)
+                // currElement.previousElementSibling.textContent = ch_n
+                // let li_tag = document.createElement('li')
+                // // li_tag.textContent = string
+                // li_tag.innerHTML = `<h3 class="flex-grow-1">${ch_n}</h3>
+                // <button class="btn btn-outline-warning mx-3">Edit</button>
+                // button class="btn btn-outline-danger" onclick="remove_li(this)">Remove</button>`
+                // // li_tag.classList.add("list-group-item")
+                // li_tag.className = 'list-group-item d-flex justify-content-between'
+                // ul1.append(li_tag)
+              }
+
+              function Ch_rename(currEle){
+                let new_tag = document.createElement('input')
+                let ch_n = new_tag.value
+                new_tag.className = 'form-control'
+                new_tag.placeholder = 'Chapter Name'
+                new_tag.type = "text"
+
+              }
+            // document.createElement('ol')
+            // let text1 = document.createTextNode("Courses: ")
+        // })
+      </script>
+    </body>
+</html>
